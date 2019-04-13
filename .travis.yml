@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t sean/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t nahasean/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run sean/react-test npm test -- --coverage
+  - docker run nahasean/react-test npm test -- --coverage
 
 
 
 after_success:
-  - docker build -t sean/multi-client ./client
-  - docker build -t sean/multi-nginx ./nginx
-  - docker build -t sean/multi-server ./server
-  - docker build -t sean/multi-worker ./worker
+  - docker build -t nahasean/multi-client ./client
+  - docker build -t nahasean/multi-nginx ./nginx
+  - docker build -t nahasean/multi-server ./server
+  - docker build -t nahasean/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push sean/multi-client
-  - docker push sean/multi-nginx
-  - docker push sean/multi-server
-  - docker push sean/multi-worker
+  - docker push nahasean/multi-client
+  - docker push nahasean/multi-nginx
+  - docker push nahasean/multi-server
+  - docker push nahasean/multi-worker
